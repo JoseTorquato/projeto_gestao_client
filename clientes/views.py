@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from .models import Person
 from .forms import PersonForm
 
 
+@login_required
 def person_list(request):
     persons = Person.objects.all()
     context = {
@@ -12,6 +14,7 @@ def person_list(request):
     return render(request, 'person.html', context)
 
 
+@login_required
 def person_new(request):
     form = PersonForm(request.POST or None)  # instanciar form
     if form.is_valid():
@@ -24,6 +27,7 @@ def person_new(request):
     return render(request, 'person_form.html', context)
 
 
+@login_required
 def person_update(request, pk):
     person = get_object_or_404(Person, pk=pk)
     form = PersonForm(request.POST or None, instance=person)
@@ -37,6 +41,7 @@ def person_update(request, pk):
     return render(request, 'person_form.html', context)
 
 
+@login_required
 def person_delete(request, pk):
     person = get_object_or_404(Person, pk=pk)
     form = PersonForm(request.POST or None, instance=person)
