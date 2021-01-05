@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+    <button type="submit"><a href="{% url 'home' %}">Home</a></button>
     <button type="submit"><a href="{% url 'logout' %}">Logout</a></button>
     <ul>
         {% for person in persons %}

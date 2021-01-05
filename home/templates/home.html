@@ -5,6 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Seja bem vindo</h1>
+
+
+    {% if user.is_authenticated %}
+        <button type="submit"><a href="{% url 'logout' %}">Logout</a></button>
+        <button type="submit"><a href="{% url 'person_list' %}">Lista de clientes</a></button>
+
+        <p>
+            <h1>Seja bem vindo, {{ user }}!</h1>
+        </p>
+
+    {% else %}
+        <button type="submit"><a href="{% url 'login' %}">Login</a></button>
+        <h1> Seja Bem vindo</h1>
+    {% endif %}
 </body>
 </html>
